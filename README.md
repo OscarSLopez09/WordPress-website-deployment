@@ -24,7 +24,7 @@ I will start the project by creating a custom VPC. The architecture is divided i
 
 <p align="center">
 Launch the utility: <br/>
-![alb 0](https://user-images.githubusercontent.com/119807533/208268804-643270c5-2228-43fb-822e-d46c65630e20.png)
+<img src="https://i.imgur.com/5qTtFDQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 
