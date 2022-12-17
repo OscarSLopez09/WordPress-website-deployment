@@ -23,7 +23,7 @@ In this project I would deploy a WordPress website on AWS using a Three-Tier inf
 I will start the project by creating a custom VPC. The architecture is divided into Three-Tier. On the first Tier we have the public subnets, on the second Tier I have the private subnets, and on the third Tear the Database created on private subnets. Also, an internet Gateway would be created on the VPC. 
 
 <p align="center">
-Launch the utility: <br/>
+Create custom VPC: <br/>
 <img src="https://i.imgur.com/5qTtFDQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
