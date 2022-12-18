@@ -79,6 +79,7 @@ Adding private subnets to the VPC: <br/>
 <img src="https://i.imgur.com/ZzfLhb4.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/WJLylYc.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
+A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside the VPC. In the following section I’m going to create two Nat Gateways to connect the private subnets to the internet. 
 
 <br />
 <br />
