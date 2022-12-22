@@ -20,7 +20,7 @@ In this project I would deploy a WordPress website on AWS using a Three-Tier inf
 
 
 <h2>Program walk-through:</h2>
-I will start the project by creating a custom VPC. The architecture is divided into Three-Tier. On the first Tier we have the public subnets, on the second Tier I have the private subnets, and on the third Tear the Database created on private subnets. Also, an internet Gateway would be created on the VPC. 
+I will start the project by creating a custom VPC. The architecture is divided into Three-Tier. On the first Tier we have the public subnets, on the second Tier I have the private subnets, and on the third Tear another private subnet that will hold the Database. Also, an internet Gateway as well as two route tables, one public and one private. 
 
 <p align="center">
 Create custom VPC from scratch: <br/>
