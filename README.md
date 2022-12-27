@@ -25,59 +25,40 @@ I will start the project by creating a custom VPC. The architecture is divided i
 <p align="center">
 Create custom VPC from scratch: <br/>
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.0.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/zAhSh9E.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/4KfYhYm.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+ <p align="center">
+ On the AWS console I select VPC, then I select the N Virginia US region. on the VPC Dashboard select create VPC and I input the configuration shown: 
+ 
+ <p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.1.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
-We enabled VPC hostname on the VPC: <br/>
-
-<img src="https://i.imgur.com/bx1ePuf.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+After the VPC has been created, I select acitons and edit VPC settings. On the DNS settings, I selected: Enabled DNS Hostnames and save it. <br/>
 
 <p align="center">
-Internet Gateway creation: <br/>
-<img src="https://i.imgur.com/4vfJCrB.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+After the VPC is created I proceeded to create an Internet Gateway: <br/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.7.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
-Internet Gateway is attached to VPC: <br/>
-<img src="https://i.imgur.com/Sw8kHhe.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/wPP5Bxc.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ Internet Gateway is then attached to VPC: <br/>
+<p align="center">
+I create 2 subnents - Public Subnet AZ1 and Public Subnet AZ2. The public subnet are going to hold the Nat Gateways, set up Server, and jump Host in the later sections of the project. <br/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.11.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.12.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
-Public subnets creation named: Public Subnet AZ1 and Public Subnet AZ2 <br/>
-<img src="https://i.imgur.com/jDs8uzf.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Hmmi6Dj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/C0gEDBC.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ I create Route Table named: Public Route Table. With this RT I'm going to route traffic to the internet from the public subnets. The route tables are going to have a destination of 0.0.0.0/0 and target - Internet Gateway. Also, I associated the public subnets with the Public route table. <br/>
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.15.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
- Public Subnet AZ2: <br/>
-<img src="https://i.imgur.com/Hmmi6Dj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/sQhiAGy.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+I create the public subnets for this project: Priave App Subnet AZ1, Private Subnet AZ1, Private Data Subnet AZ1, and Private Data Subnet AZ2. The Private App Subnet are going to hold the Webserver and the Private Data Subnets are going to hold the Database instance. All AZ1 subnets are created on the US-East-1A and all the AZ2 subnets are created on the UsS -East-1B AZ.
 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.18A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.19.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.20.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.21.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-Enabled Auto-assign IP settings on both AZ1 and AZ2: <br/>
-<img src="https://i.imgur.com/WJ5ajlB.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Glxr7BV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-<p align="center">
-Creating Route Table named: Public Route Table <br/>
-
-<img src="https://i.imgur.com/xk4wcEx.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Vg4ZWlj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-<p align="center">
-Adding public routes to the table. Public routes allow access to the internet. <br/>
-
-<img src="https://i.imgur.com/LDTRyf8.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/sy9yPEg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/OIQ4q8B.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-<p align="center">
-Adding private subnets to the VPC: <br/>
-
-<img src="https://i.imgur.com/VzApukE.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ZzfLhb4.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/WJLylYc.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside the VPC. In the following section I’m going to create two Nat Gateways to connect the private subnets to the internet. One on each public Subnet, (Public AZ1, Public AZ2).
 
