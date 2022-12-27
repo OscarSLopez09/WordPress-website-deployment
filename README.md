@@ -24,7 +24,7 @@ I will start the project by creating a custom VPC. The architecture is divided i
 
 <p align="center">
 Create custom VPC from scratch: <br/>
-<img src="https://i.imgur.com/5qTtFDQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.0.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/zAhSh9E.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/4KfYhYm.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
