@@ -104,15 +104,20 @@ SSH Security group:  name – SSH SG, inbound rules (ssh, 22), source (my IP)
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <p align="center">
 SG Name: Webserver SG, inbound rules (Http, 80) source (ALB SG) - inbound rules (Https, 443) source (ALB SG) - inbound rules (SSH, 22) source (SSH SG).
-<p align="center"> 
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
 <p align="center"> 
-SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG). 
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center"> 
+ 
+<p align="center">
+SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG).
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
+
+     
 <p align="center"> 
 I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG). 
 
+ 
 <p align="center">
 I will proceed to create the MySQL Database instance in the private subnet: 
 
