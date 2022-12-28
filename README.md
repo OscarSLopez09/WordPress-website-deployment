@@ -64,13 +64,18 @@ A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT 
 
 
 <p align="center">
-<img src="https://i.imgur.com/VkzDQOn.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/aEA20XP.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/u8vYu5W.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+<p align="center"> 
+The Nat gateway is being created on the Public Subnet AZ1 and an elastic IP is being allocated.
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
 
 <p align="center">
- Private Route table to connect the private subnets with publice subnets using the Nat Gateway: <br/>
-<img src="https://i.imgur.com/pTZ4vo7.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ Private Route table (Private RT AZ1) is created with the destination: 0.0.0.0/0 target - Nat Gateway. On subnete association I associate the Private App Subnet AZ1 and Private Data AZ1. This is going to connect the private subnets with publice subnets using the Nat Gateway: <br/>
+ 
+ <p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.2A" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/Q1AkC0U.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/5yI86gs.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 
