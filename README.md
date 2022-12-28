@@ -62,40 +62,23 @@ I create the private subnets for this project: Priave App Subnet AZ1, Private Su
 A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside the VPC. In the following section I’m going to create two Nat Gateways to connect the private subnets to the internet. One on each public Subnet, (Public AZ1, Public AZ2).
 
 <p align="center">
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1" height="50%" width="50%" alt="Disk Sanitization Steps"/>
- 
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
 <p align="center"> 
 The Nat gateway is being created on the Public Subnet AZ1 and an elastic IP is being allocated.
-
-
-
-<p align="center">
- Private Route table (Private RT AZ1) is created with the destination: 0.0.0.0/0 target - Nat Gateway. On subnete association I associate the Private App Subnet AZ1 and Private Data AZ1. This is going to connect the private subnets with publice subnets using the Nat Gateway: <br/>
- 
-<p align="center">
-
-
-
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
-Associate the Private subnets: Private App Subnet AZ1 and Private Private Data Subnet AZ1 <br/>
-<img src="https://i.imgur.com/69LxobC.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ipB1ps0.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ Private Route table (Private RT AZ1) is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ1. On subnete association I associate the Private App Subnet AZ1 and Private Data AZ1. This is going to connect the private subnets with publice subnets using the Nat Gateway: <br/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.2A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
-Creating a second Nat Gateway for the AZ2 subnets and the corresponding Private Route Table on AZ2 <br/>
-<img src="https://i.imgur.com/Df5NNlr.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/hZj7woL.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ibArJWT.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/L3u66bC.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/phTZDK4.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+Now, I create a second Nat Gateway for the AZ2 subnets: <br/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
+The sencond route table is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ2 associated with the Private subnets: Private App Subnet AZ2 and Private Private Data Subnet AZ2. <br/>
 <p align="center">
-Associate the Private subnets: Private App Subnet AZ2 and Private Private Data Subnet AZ2 <br/>
-<img src="https://i.imgur.com/rL82aJY.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/9Qal4Uj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.4B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 In this part of the project, I’m going to create the security groups needed. I will create:
 
@@ -111,18 +94,18 @@ In this part of the project, I’m going to create the security groups needed. I
 
 
 <p align="center">
-<img src="https://i.imgur.com/b0q9BLj.png" height="30%" width="30%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/iv5w30C.png" height="40%" width="40%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Vc5ZBdi.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/GAtGI3h.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/SXqwPi3.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/STo1wDy.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/5QIT23D.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/xNHXyNA.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/YGN6QNW.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/lovcuXP.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/93sBB1R.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/uq2b86L.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
 I will proceed to create the MySQL Database instance in the private subnet: 
