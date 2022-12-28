@@ -94,18 +94,24 @@ In this part of the project, I’m going to create the security groups needed. I
 
 
 <p align="center">
-
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+To create security groups, we go to VPC then security groups tab – we select Create Security Group.  On create security group we fill in the information.  Security group name: ALB SG – Inbound rules (Http, 80) source (0.0.0.0/0) - (Https, 443) source (0.0.0.0/0), then create security group. 
+ 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.1B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+SSH Security group:  name – SSH SG, inbound rules (ssh, 22), source (my IP) 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+SG Name: Webserver SG, inbound rules (Http, 80) source (ALB SG) - inbound rules (Https, 443) source (ALB SG) - inbound rules (SSH, 22) source (SSH SG).
+<p align="center"> 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+<p align="center"> 
+SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG). 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"
+<p align="center"> 
+I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG). 
 
 <p align="center">
 I will proceed to create the MySQL Database instance in the private subnet: 
