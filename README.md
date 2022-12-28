@@ -58,12 +58,13 @@ I create the private subnets for this project: Priave App Subnet AZ1, Private Su
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.20.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.21.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-
+<p align="center">
 A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside the VPC. In the following section I’m going to create two Nat Gateways to connect the private subnets to the internet. One on each public Subnet, (Public AZ1, Public AZ2).
 
-
 <p align="center">
-
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
 <p align="center"> 
 The Nat gateway is being created on the Public Subnet AZ1 and an elastic IP is being allocated.
