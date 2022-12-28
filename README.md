@@ -64,11 +64,11 @@ A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT 
 
 
 <p align="center">
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
  
 <p align="center"> 
 The Nat gateway is being created on the Public Subnet AZ1 and an elastic IP is being allocated.
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
 
 
 <p align="center">
