@@ -138,13 +138,17 @@ selected Database Subnet Group – on security groups: Database SG – On additi
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.4E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
-In this section of the project, I will create an EFS file system, so that Webserver can have access to shared files. The EFS Mount targets are in each AZ in the VPC. The Webservers will use the mount targets to connect to the EFS. 
+In this section of the project, I will create an EFS file system, so that Webserver can have access to shared files, application code, and application file configurations. The EFS Mount targets are in each AZ in the VPC. The Webservers will use the mount targets to connect to the EFS. 
+ 
+On the AWS console look for EFS, select create file system, customize option. The file system settings will appear and in general, create the name: Dev-EFS - Storage Class: Standard – On Enable encryption of data at rest: disabled – Click on the next button. 
 
 <p align="center">
-<img src="https://i.imgur.com/ISA8XqJ.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/61syv8Z.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/HcOsrJQ.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/iJ0qDqQ.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efs.1.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+
+On network settings: Dev VPC – Mount targets: select the AZ US-East-1A – Subnet: Private Data Subnet AZ1 – security groups: EFS SG. I created a second Mount target: AZ US-East-1B – Subnet: Private Data Subnet AZ2 – Security groups: EFS SG. Then select Next and click on Create. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efs.1A.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+
 
 In this section, I will create an EC2 instance in the public subnet to install the Website and move files to EFS. The EC2 instance will be used as a setup server. 
 
