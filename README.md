@@ -110,29 +110,33 @@ SG Name: Webserver SG, inbound rules (Http, 80) source (ALB SG) - inbound rules 
 <p align="center"> 
  
 <p align="center">
-SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG).
+SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG). Also, I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG).
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
-
-     
-<p align="center"> 
-I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG). 
-
  
 <p align="center">
-I will proceed to create the MySQL Database instance in the private subnet: 
+In this section of the project, I’m going to create the Database instance. The database is going to be a MySQL DB and is going to be hosted on the AZ North Virginia US –East –1B. Also, I’m going to create a Database subnet group. 
+ 
+<p align="center">
+To start we look for RDS, then on the left side we find subnet groups, then we click on create DB subnet group. I named it – Database subnet, for the Availability Zones – select US-East-1B and US-East-1A, subnets: Private Data subnet AZ1 and Private Data Subnet AZ2, and finally click on Create. 
 
-<img src="https://i.imgur.com/L2ZIDEx.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/67XeRmj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/eJBK26g.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/t5323c2.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/R6PVXmS.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ZAwu1A7.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/yDp2fOn.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/I0CXiGU.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/50k0qBZ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/5xlM0EE.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Xsd4bKB.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/2JWDYj6.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.1A.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.2A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center"> 
+<p align="center"> 
+I select Create Database; the following configuration is selected: 
+<p align="center">
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Standard create - Engine option: MySQL – Engine Version: 5.7.38 - Templates: Dev/Test - DB instance Identifier: dev-rds-db – Select the DB username and password – Connectivity on Virtual Private cloud (VPC): select Dev VPC
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+selected Database Subnet Group – on security groups: Database SG – On additional configuration I have to select a DB name: applicationdb -  Select Create Database. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.4E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
 
 In this section of the project, I will create an EFS file system, so that Webserver can have access to shared files. The EFS Mount targets are in each AZ in the VPC. The Webservers will use the mount targets to connect to the EFS. 
 
