@@ -406,12 +406,39 @@ Next, I need to login as admin to update the URL address on the WordPress server
 
 
 <p align="center">
-In this section I will create a domain name and register a record set on Route 53: <br/>
+In this section of the project, I’m going to register a record set on Route 53. 
+<p align="center">
+On the AWS console look for Route 53, then on the Route 53 Dashboard select: DNS management 1 hosted zone. Select the hosted zone (Richarlison01.click), the hosted zone details page will be displayed, and I click on Create record. <br/>
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.1B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center"> 
+Configuration used: 
+<p align="center">
+Record name: www 
+<p align="center">
+Record type: A – Routes traffic to an IPv4 address and some AWS resources. 
+<p align="center">
+Alias record selected. 
+<p align="center">
+Route traffic to: Alias to Application and Classic load balancer 
+<p align="center">
+Choose a region: US-East-North Virginia 
+<p align="center">
+Choose Load balancer: dualstack.Dev-ALB-334537928.us-east-1.elb.amazonaws.com 
+<p align="center">
+Finally, click on Create records.
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.1C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+To test the record registration, I open a new browser tab and copy and paste the domain: www.Richarlison.click. The test is successful its sending me to WordPress. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Now, I need to login to WordPress as admin using the following URL: www.Richarlison.click/wp-admin . Every time we update the domain name, it needs to be updated on WordPress to properly connect. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<img src="https://i.imgur.com/iwagwqX.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/MFiaG4R.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/B79xpzZ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/4JWNZtp.png" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
 
 In this section, I will create an SSL certificate in AWS Certificate Manager. This is with the purpose of encrypting the traffic from our Webserver to the Web browser. 
 
