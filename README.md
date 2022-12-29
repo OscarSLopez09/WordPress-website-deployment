@@ -456,6 +456,31 @@ Now, I need to validate with Route 53 our domain name, this is done by clicking 
 <p align="center">
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/cr.3D.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
+In this section of the project, I’m going to create a jump host/ jump box. The jump host is an EC2 instance that is going to be created in the public subnet and is going to be able to connect to the private subnets.
+ 
+<p align="center">
+On the AWS console look for EC2, select launch instance. On the launch instance, I choose the following settings:
+<p align="center">
+Name: Bastion host
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Application OS: Amazon Linux 2 AMI
+<p align="center">
+Instance type: T2 Micro
+<p align="center">
+Key pair: Mosalah9
+<p align="center">
+Networking: Dev VPC
+<p align="center">
+Subnet: Public Subnet AZ1
+<p align="center">
+Security groups: SSH SG, then click on launch instance. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+ 
+
 
 
 
@@ -463,11 +488,7 @@ Now, I need to validate with Route 53 our domain name, this is done by clicking 
 <img src="https://i.imgur.com/nQtTqYc.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/ueTaSxV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/uEkkRLz.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/SdjaKfx.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/sCGMz2G.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/br8EeS3.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/G5n6iLL.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/XYfUR9E.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
 
 To SSH into the instances in the private subnets. I will launch an EC2 instance in the public subnet, then from the instance in the public subnet, we can SSH into any instance in the private subnet. 
 
