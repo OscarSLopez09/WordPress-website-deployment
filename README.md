@@ -150,14 +150,18 @@ On network settings: Dev VPC – Mount targets: select the AZ US-East-1A – Sub
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efs.1A.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
 
 
-In this section, I will create an EC2 instance in the public subnet to install the Website and move files to EFS. The EC2 instance will be used as a setup server. 
+In this section, I will create an EC2 instance in the public subnet AZ1. In this instance, I will install the Webserver and move files to EFS. The EC2 instance will be used as a setup server. 
 
 <p align="center">
-<img src="https://i.imgur.com/zoQsmrA.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/4DE3NxF.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Wbe42U0.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/8eyv70j.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/gc7ltAS.png" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+On the AWS console look for EC2, select launch instance:
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ss.1.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+On the launch instance, I choose the following settings: Name: Setup Server – Application OS: Amazon Linux 2 AMI - Instance type: T2 Micro – Key pair – Networking: Dev VPC – Subnet: Public Subnet AZ1 – Security groups: SSH SG, Webserver SG, and ALB SG – click on launch instance. 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ss.1C.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+
+
+
 
 Now, I will begin the installation of the WordPress site and move the files to EFS. I’m connecting over SSH using CMD. I will start by creating the HTML directory and mount the EFS to it. 
 
