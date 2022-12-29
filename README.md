@@ -285,45 +285,125 @@ After setting up the WordPress server. I copy the public IP of the Setup server 
 <p align="center">
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.9B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
- 
-Application Load Balancer is used to distribute web traffic across EC2 instances in multiple AZs. In this section I will create two EC2 instances on each of the private subnets. 
+ In this section of the project, I will create two EC2 instances: Webserver AZ1 and Webserver AZ2. These servers are going to have the configurations of the Setup server. Also, I’m going to create a target group and an ALB. The application load balancer is used to distribute traffic across EC2 instances in multiple availability zones. 
 
 <p align="center">
-Creating Webserver AZ1: <br/>
-<img src="https://i.imgur.com/WNB1lej.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/tEsOlrQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/5ZxFjhz.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/kA0BTP0.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/M0IwlA2.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/youDzEV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/6VWiSnl.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+On the AWS console look for EC2, select launch instance. On the launch instance, I choose the following settings: 
+<p align="center">
+Name: Webserver AZ1 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Application OS: Amazon Linux 2 AMI 
+<p align="center">
+Instance type: T2 Micro 
+<p align="center">
+Key pair: Mosalah9 
+<p align="center">
+Networking settings: 
+<p align="center">
+VPC: Dev VPC 
+<p align="center">
+Subnet: Private App subnet AZ1 
+<p align="center">
+Security group: Webserver SG
+<p align="center"> 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Advanced Details: scroll down to User data.
+<p align="center">
+User data: 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 <p align="center">
 Creating Webserver AZ2: <br/>
-<img src="https://i.imgur.com/PEyj7NM.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/zEC7lPE.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/p8sbkzh.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/f424nbR.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Zfqqd1Y.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ifCD5wi.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/yJSnZKg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
 <p align="center">
-Creating target group for the ALB: <br/>
-<img src="https://i.imgur.com/awR0EEA.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/uQkbKdh.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/BkD9SZd.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/wYNgh2w.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/VKlZIKW.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/OQVy8qF.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
+Name: Webserver AZ2 
 <p align="center">
-Creating the Application Load Balancer: <br/>
-<img src="https://i.imgur.com/JrfTtaj.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/nNP2nH5.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/MP6p5Z9.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/TBNxaiR.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/CvZk0kT.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Application OS: Amazon Linux 2 AMI 
+<p align="center">
+Instance type: T2 Micro
+<p align="center"> 
+Key pair: Mosalah9 
+<p align="center">
+Networking settings: 
+<p align="center">
+VPC: Dev VPC 
+<p align="center">
+Subnet: Private App subnet AZ2 
+<p align="center">
+Security group: Webserver SG 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Advanced Details: Scroll down to user data.
+<p align="center">
+User data: 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+<p align="center">
+To create a target group, go to the EC2 Dashboard and on the left side look for Target Groups tab and select it. Select create Target Groups. I used the following configuration: 
+<p align="center">
+Basic configuration:
+<p align="center">  
+Choose a target type: Instance 
+<p align="center">
+Target Group Name: Dev-TG
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Protocol: HTTP –80 
+<p align="center">
+VPC: Dev-VPC 
+<p align="center">
+Register Targets: 
+<p align="center">
+Webserver AZ1 and Webserver AZ2 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.3D.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Select Include as pending below, then select Create Target Group.
+
+To create a Load Balancer, go to the EC2 Dashboard and on the left side look for Load Balancer tab and select it. Select Create load balancer. I used the following configuration: 
+<p align="center">
+Application load balancer: Create 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Load balancer name: Dev-ALB 
+<p align="center">
+Scheme: Internet facing 
+<p align="center">
+Network mapping: 
+<p align="center">
+VPC: Dev VPC 
+<p align="center">
+Availability zone: US-East-1A subnet (Public Subnet AZ1) 
+<p align="center">
+Availability zone: US-East-1B subnet (Public Subnet AZ2)
+<p align="center">
+Security group:  ALB SG 
+<p align="center">
+Listener and routing: 
+<p align="center">
+Protocol: HTTP – 80  forward to: Dev-TG  (Target group)
+<p align="center"> 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.4C.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Finally, click Create load balancer. 
+<p align="center">
+After creating the load balancer, I need to test. Using the load balancer DNS name, I open a new tab and copy and paste it. I’m able to access the Webservers.
+<p align="center">  
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb000.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<p align="center"> 
+Next, I need to login as admin to update the URL address on the WordPress server. 
+<p align="center"> 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb001.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
 
 <p align="center">
 In this section I will create a domain name and register a record set on Route 53: <br/>
