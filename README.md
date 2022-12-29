@@ -440,7 +440,23 @@ Now, I need to login to WordPress as admin using the following URL: www.Richarli
 
 
 
-In this section, I will create an SSL certificate in AWS Certificate Manager. This is with the purpose of encrypting the traffic from our Webserver to the Web browser. 
+In this section, I will create an SSL certificate in AWS Certificate Manager. This is with the purpose of encrypting the traffic from our Webserver to the Web browser.
+ 
+On the AWS console look for Certificate Manager, then select request certificate. On the certificate type select – Request a public certificate and click next. 
+<p align="center">
+Following settings configure:
+<p align="center">
+Domain names – Fully qualify domain names: richarlison017.click.
+<p align="center">
+Validate method: DNS validation, scroll down and select Request.
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/cr.3.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Now, I need to validate with Route 53 our domain name, this is done by clicking on Create records in Route 53, select the domain name (richarlison017.click) and select Create records. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/cr.3D.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
+
 
 
 <p align="center">
