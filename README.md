@@ -479,36 +479,24 @@ Security groups: SSH SG, then click on launch instance.
 <p align="center">
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
- 
-
-
-
-
-<p align="center">
-<img src="https://i.imgur.com/nQtTqYc.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ueTaSxV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/uEkkRLz.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-
-To SSH into the instances in the private subnets. I will launch an EC2 instance in the public subnet, then from the instance in the public subnet, we can SSH into any instance in the private subnet. 
-
-<p align="center">
-Creating a Bastion Host to SSH into the private EC2 instances: <br/>
-
-<img src="https://i.imgur.com/aIXNUKA.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/rH7xr0m.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Z14tzZJ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Z6UNhoi.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/yecestg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-
 A listener is a process that checks for connection requests. You define a listener when you create your load balancer, and you can add listeners to your load balancer at any time. In this section, I will create an HTTP Listener for the Application Load Balancer and secure the Website. 
 
-
+On the AWS console look for EC2, then on the left side of the Dashboard look for Load balancer. Click on the load balancer (Dev-ALB), look for the listener section and select add listener.
 <p align="center">
-<img src="https://i.imgur.com/KZkX56B.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/xnHPwJK.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/SeDo2gx.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+On the listener details change the protocols: HTTPS - 443, then on default actions, select: Forward to – Dev-TG. Now, scroll down to Default SSL/TLS certificate – From ACM select (richarlison017.click) certificate. At this point click Add button.
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Now, scroll down to Default SSL/TLS certificate – From ACM select (richarlison017.click) certificate. At this point click Add button.
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<p align="center">
+Click on listener and select – HTTP:80. Now on the action menu select – Edit listener, go down to default actions – select redirect change the port: HTTPS: 443, then click on Save changes. 
+<p align="center">
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.7.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
 <img src="https://i.imgur.com/iz7qsgU.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/b9S6TyJ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <img src="https://i.imgur.com/zTzo8SQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
