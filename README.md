@@ -152,137 +152,98 @@ On network settings: Dev VPC – Mount targets: select the AZ US-East-1A – Sub
 
 In this section, I will create an EC2 instance in the public subnet AZ1. In this instance, I will install the Webserver and move files to EFS. The EC2 instance will be used as a setup server. 
 
-<p align="center">
+
 On the AWS console look for EC2, select launch instance:
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ss.1.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 On the launch instance, I choose the following settings:
-<p align="center">
-Name: Setup Server
-<p align="center">
-Application OS: Amazon Linux 2 AMI
-<p align="center">
-Instance type: T2 Micro
-<p align="center">
-Key pair: Mosalah9 
-<p align="center">
-Networking: Dev VPC
-<p align="center">
-Subnet: Public Subnet AZ1
-<p align="center">
-Security groups: SSH SG, Webserver SG, and ALB SG – click on launch instance. 
+* Name: Setup Server
+* Application OS: Amazon Linux 2 AMI
+* Instance type: T2 Micro
+* Key pair: Mosalah9 
+* Networking: Dev VPC
+* Subnet: Public Subnet AZ1
+* Security groups: SSH SG, Webserver SG, and ALB SG – click on launch instance. 
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ss.1C.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
  
-<p align="center">
+
 In this section, I will begin the installation of WordPress on the Setup Server EC2. I’m connecting to the Setup server with Putty.  
-<p align="center">
+
 1.  create the HTML directory and mount EFS to it.
-<p align="center">
-- yum update -y 
-<p align="center">
-- mkdir -p /var/www/html 
-<p align="center">
-- sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-03c9b3354880b36a6.efs.us-east-1.amazonaws.com:/ /var/www/html 
-<p align="center"> 
+* yum update -y 
+* mkdir -p /var/www/html 
+* sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-03c9b3354880b36a6.efs.us-east-1.amazonaws.com:/ /var/www/html 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.2.PNG" height="70%" width="70%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 2. install apache. 
-<p align="center">
-- sudo yum install -y httpd httpd-tools mod_ssl 
-<p align="center"> 
-- sudo systemctl enable httpd  
-<p align="center"> 
-- sudo systemctl start httpd 
-<p align="center"> 
+* sudo yum install -y httpd httpd-tools mod_ssl 
+* sudo systemctl enable httpd  
+* sudo systemctl start httpd 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.3.PNG" height="70%" width="70%" alt="Disk Sanitization Steps"/>
  
-<p align="center"> 
+
 3. install php 7.4 
-<p align="center"> 
-- sudo amazon-linux-extras enable php7.4 
-<p align="center"> 
-- sudo yum clean metadata 
-<p align="center"> 
-- sudo yum install php php-common php-pear -y 
-<p align="center"> 
-- sudo yum install php-{cgi,curl,mbstring,gd,mysqlnd,gettext,json,xml,fpm,intl,zip} -y
-<p align="center"> 
+* sudo amazon-linux-extras enable php7.4 
+* sudo yum clean metadata  
+* sudo yum install php php-common php-pear -y  
+* sudo yum install php-{cgi,curl,mbstring,gd,mysqlnd,gettext,json,xml,fpm,intl,zip} -y
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.4A.PNG" height="70%" width="70%" alt="Disk Sanitization Steps"/>
- 
-<p align="center">  
+  
 4. install mysql5.7 
-<p align="center"> 
-- sudo rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm 
-<p align="center"> 
-- sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 
-<p align="center"> 
-- sudo yum install mysql-community-server -y 
-<p align="center"> 
-- sudo systemctl enable mysqld 
-<p align="center"> 
-- sudo systemctl start mysqld 
-<p align="center"> 
+
+* sudo rpm -Uvh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm 
+* sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 
+* sudo yum install mysql-community-server -y 
+* sudo systemctl enable mysqld 
+* sudo systemctl start mysqld 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.5.PNG" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.5A.PNG" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-5. set permissions 
-<p align="center">
-- sudo usermod -a -G apache ec2-user 
-<p align="center">
-- sudo chown -R ec2-user:apache /var/www 
-<p align="center">
-- sudo chmod 2775 /var/www && find /var/www -type d -exec sudo chmod 2775 {} \; 
-<p align="center">
-- sudo find /var/www -type f -exec sudo chmod 0664 {} \; 
-<p align="center">
-- chown apache:apache -R /var/www/html 
-<p align="center">
+
+5. set permissions. 
+* sudo usermod -a -G apache ec2-user 
+* sudo chown -R ec2-user:apache /var/www 
+* sudo chmod 2775 /var/www && find /var/www -type d -exec sudo chmod 2775 {} \; 
+* sudo find /var/www -type f -exec sudo chmod 0664 {} \; 
+* chown apache:apache -R /var/www/html 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.6.PNG" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-6. download wordpress files 
-<p align="center">
-- wget https://wordpress.org/latest.tar.gz 
-<p align="center">
-- tar -xzf latest.tar.gz 
-<p align="center">
-- cp -r wordpress/* /var/www/html/ 
-<p align="center">
+6. download wordpress files.
+* wget https://wordpress.org/latest.tar.gz 
+* tar -xzf latest.tar.gz 
+* cp -r wordpress/* /var/www/html/ 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.7.PNG" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 
-<p align="center"> 
-7. create the wp-config.php file 
-<p align="center">
-- cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+
+7. create the wp-config.php file.
+* cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
  
- <p align="center">
- 8. edit the wp-config.php file 
-<p align="center">
-- nano /var/www/html/wp-config.php 
-<p align="center">
-On the wp-config.php, I input the following parameters: 
-<p align="center">
-- DB name: applicationDB
-<p align="center">
-- DB user: Bervatov08
-<p align="center">
-- DB password: Arsenal25
-<p align="center">
-- DB Host: dev-rds-db.cggzpwqbicm6.us-east-1.rds.amazonaws.com
-<p align="center">
+8. edit the wp-config.php file.
+* nano /var/www/html/wp-config.php 
+* On the wp-config.php, I input the following parameters: 
+* DB name: applicationDB
+* DB user: Bervatov08
+* DB password: Arsenal25
+* DB Host: dev-rds-db.cggzpwqbicm6.us-east-1.rds.amazonaws.com
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.8A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-9. restart the webserver 
-<p align="center">
-- service httpd restart 
-<p align="center">
+9. restart the webserver.
+* service httpd restart 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.8B.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 After setting up the WordPress server. I copy the public IP of the Setup server and paste it to the URL bar, then at the end of the URL I add the (wp-admin) line and successfully login to the Server. 
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/wp.9B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
  In this section of the project, I will create two EC2 instances: Webserver AZ1 and Webserver AZ2. These servers are going to have the configurations of the Setup server. Also, I’m going to create a target group and an ALB. The application load balancer is used to distribute traffic across EC2 instances in multiple availability zones. 
