@@ -93,27 +93,46 @@ In this part of the project, I’m going to create the security groups needed. I
 - EFS Security group – Port = 2049 and 22 Source = Webserver SG, SSH SG 
 
 
-<p align="center">
-To create security groups, we go to VPC then security groups tab – we select Create Security Group.  On create security group we fill in the information.  Security group name: ALB SG – Inbound rules (Http, 80) source (0.0.0.0/0) - (Https, 443) source (0.0.0.0/0), then create security group. 
- 
-<p align="center">
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.1B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-SSH Security group:  name – SSH SG, inbound rules (ssh, 22), source (my IP) 
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-SG Name: Webserver SG, inbound rules (Http, 80) source (ALB SG) - inbound rules (Https, 443) source (ALB SG) - inbound rules (SSH, 22) source (SSH SG).
- 
-<p align="center"> 
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center"> 
- 
-<p align="center">
-SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG). Also, I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG).
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
- 
 
+To create security groups, we go to VPC then security groups tab – we select Create Security Group.
+ 
+security group Configuration settings:  
+* Security group name: ALB SG 
+* Inbound rules: (Http, 80) source (0.0.0.0/0) 
+* Inbound rules: (Https, 443) source (0.0.0.0/0) 
+* Create security group
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.1B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/albgr.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+SSH Security group:  
+* name – SSH SG 
+* Inbound rules (ssh, 22) source (my IP)
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.3.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+ 
+Webserver Security Group:
+* SG Name: Webserver SG 
+* Inbound rules (Http, 80) source (ALB SG)
+* Inbound rules (Https, 443) source (ALB SG) 
+* Inbound rules (SSH, 22) source (SSH SG)
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.4.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+ 
+Database security group:
+* SG Name: Database SG 
+* Inbound rules (MySQL/Aurora, 3306) source (Webserver SG) 
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/dbsg.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+EFS security group:
+* SG Name: EFS SG 
+* Inbound rules (NFS, 2049) source (Webserver SG) 
+* Inbound rule (SSH, 22) source (SSH SG)
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efsgr.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+  
 In this section of the project, I’m going to create the Database instance. The database is going to be a MySQL DB and is going to be hosted on the AZ North Virginia US –East –1B. Also, I’m going to create a Database subnet group. 
  
 
