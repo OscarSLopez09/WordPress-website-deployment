@@ -546,6 +546,14 @@ Now I’m going back to the EC2 Instances and verify that the Auto Scaling is wo
 The ASG is working the servers with the ASG-Webserver are initializing.
  
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.10.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+ 
+This time I’m going to test if the servers are working by connecting to the website  www.Richarlison017.click.
+ 
+As you can see, the test is successfull I'm able to contact the Webserver.
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/asg.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+
 
 
 
