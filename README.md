@@ -20,7 +20,7 @@ In this project I would deploy a WordPress website on AWS using a Three-Tier inf
 
 
 <h2>Program walk-through:</h2>
-I will start the project by creating a custom VPC. The architecture is divided into Three-Tier. On the first Tier we have the public subnets, on the second Tier I have the private subnets, and on the third Tear another private subnet that will hold the Database. Also, an internet Gateway as well as two route tables, one public and one private. 
+I will start the project by creating a custom VPC. The architecture is divided into Three-Tier. On the first Tier we have the public subnets, on the second Tier I have the private subnets, and on the third Tear another private subnet that will hold the Database. Also, an internet Gateway as well as two route tables, one public and one private.
 
 <p align="center">
 Create custom VPC from scratch: <br/>
@@ -497,60 +497,64 @@ Click on listener and select – HTTP:80. Now on the action menu select – Edit
 <p align="center">
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.7.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
-<img src="https://i.imgur.com/iz7qsgU.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/b9S6TyJ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/zTzo8SQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/EOnn1q8.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
 A launch template specifies instance configuration information - It includes the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and other parameters used to launch EC2 instances. In this section I will create a launch template and an Auto Scaling group. This will provide availability to the Website. 
 
-<p align="center">
-Creating Launch template: <br/>
+**To create a Lunch Template:**
 
-<img src="https://i.imgur.com/CzN8ZOn.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/8wjnkqU.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/HN6BEnM.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/wkjNoAH.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/FQaJBjB.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/TNQSnij.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/aPzpZhv.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/ApFEJlQ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-
-
-<p align="center">
-Creating the Auto Scaling Group: <br/>
+* On the AWS console look for EC2, then on the left side of the Dashboard look for Launch Templates, then select Create launch templates. 
+* Launch template name: Dev-Launch-Template
+* Auto scaling guidance – select Provide guidance to help me set up a template that I can use with EC2 auto
+* Application and OS: Amazon Linux 2 AMI
+* Instance type: T2 Micro
+* Key pair: Mosalah9
+* Firewall (Security and groups) select existing security group: Webserver SG
+* Scroll down to Advanced details (User Data) Then click on the Create launch template. 
 
 
-<img src="https://i.imgur.com/plQKkZV.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/Osxu19q.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/KHXFaPK.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/BOnZS6s.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/jDAhm0V.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/473ugvS.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/snM0fm4.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/1jSNEwJ.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/rLc4drg.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/6rLPCBf.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/d11sMCl.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/FmLLR0C.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/XXqZBZd.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<img src="https://i.imgur.com/rZHN8bo.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+**To create an Auto Scaling Group:**
+ 
+* On the left side of the EC2 Dashboard look for Auto scaling groups. Select Create Auto scaling group
+* Auto scaling group name: Dev-ASG
+* Select launch template: Dev-Launch-Template and click Next
+* Network section VPC: Dev VPC
+* Availability zones and subnets: Private App Subnet AZ1 and Private App Subnet AZ2 and click Next
+* Load balancing – select Attached to an existing Load balancer
+* Existing Load balancer target groups: Dev-TG
+* Health Check type – Select ALB, then click Next
+* On Desired Capacity: 2 Minimum Capacity: 1 Maximum Capacity: 4 then select Next
+* Select tags: ASG-Webserver and click Create Auto scaling group. 
 
 
 
 
 
+### Create API
 
+**To create the API**
+1. Go to API Gateway console
+2. Click Create API
 
+![create API](./images/create-api-button.jpg) 
 
+3. Scroll down and select "Build" for REST API
 
+![Build REST API](./images/build-rest-api.jpg) 
 
+4. Give the API name as "DynamoDBOperations", keep everything as is, click "Create API"
 
+![Create REST API](./images/create-new-api.jpg)
 
+5. Each API is collection of resources and methods that are integrated with backend HTTP endpoints, Lambda functions, or other AWS services. Typically, API resources are organized in a resource tree according to the application logic. At this time you only have the root resource, but let's add a resource next 
 
+Click "Actions", then click "Create Resource"
 
+![Create API resource](./images/create-api-resource.jpg)
 
+6. Input "DynamoDBManager" in the Resource Name, Resource Path will get populated. Click "Create Resource"
 
+![Create resource](./images/create-resource-name.jpg)
+
+7. Let's create a POST Method for our API. With the "/dynamodbmanager" resource selected, Click "Actions" again and click "Create Method". 
 
 
 
