@@ -287,155 +287,116 @@ After setting up the WordPress server. I copy the public IP of the Setup server 
  
  In this section of the project, I will create two EC2 instances: Webserver AZ1 and Webserver AZ2. These servers are going to have the configurations of the Setup server. Also, I’m going to create a target group and an ALB. The application load balancer is used to distribute traffic across EC2 instances in multiple availability zones. 
 
-<p align="center">
+
 On the AWS console look for EC2, select launch instance. On the launch instance, I choose the following settings: 
-<p align="center">
-Name: Webserver AZ1 
-<p align="center">
+* Name: Webserver AZ1 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Application OS: Amazon Linux 2 AMI 
-<p align="center">
-Instance type: T2 Micro 
-<p align="center">
-Key pair: Mosalah9 
-<p align="center">
-Networking settings: 
-<p align="center">
-VPC: Dev VPC 
-<p align="center">
-Subnet: Private App subnet AZ1 
-<p align="center">
-Security group: Webserver SG
-<p align="center"> 
+
+* Application OS: Amazon Linux 2 AMI 
+* Instance type: T2 Micro 
+* Key pair: Mosalah9 
+* Networking settings: 
+* VPC: Dev VPC 
+* Subnet: Private App subnet AZ1 
+* Security group: Webserver SG
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Advanced Details: scroll down to User data.
-<p align="center">
-User data: 
-<p align="center">
+ 
+* Advanced Details: scroll down to (User data) and input the commands to create Webserver.
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-Creating Webserver AZ2: <br/>
-<p align="center">
-Name: Webserver AZ2 
-<p align="center">
+
+* Creating Webserver AZ2:
+* Name: Webserver AZ2 
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Application OS: Amazon Linux 2 AMI 
-<p align="center">
-Instance type: T2 Micro
-<p align="center"> 
-Key pair: Mosalah9 
-<p align="center">
-Networking settings: 
-<p align="center">
-VPC: Dev VPC 
-<p align="center">
-Subnet: Private App subnet AZ2 
-<p align="center">
-Security group: Webserver SG 
-<p align="center">
+
+* Application OS: Amazon Linux 2 AMI 
+* Instance type: T2 Micro
+* Key pair: Mosalah9 
+* Networking settings: 
+* VPC: Dev VPC 
+* Subnet: Private App subnet AZ2 
+* Security group: Webserver SG 
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Advanced Details: Scroll down to user data.
-<p align="center">
-User data: 
-<p align="center">
+ 
+*Advanced Details: Scroll down to user data:
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
-<p align="center">
+
 To create a target group, go to the EC2 Dashboard and on the left side look for Target Groups tab and select it. Select create Target Groups. I used the following configuration: 
-<p align="center">
-Basic configuration:
-<p align="center">  
-Choose a target type: Instance 
-<p align="center">
-Target Group Name: Dev-TG
-<p align="center">
+
+Configuration settings: 
+* Choose a target type: Instance 
+* Target Group Name: Dev-TG
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Protocol: HTTP –80 
-<p align="center">
-VPC: Dev-VPC 
-<p align="center">
-Register Targets: 
-<p align="center">
-Webserver AZ1 and Webserver AZ2 
-<p align="center">
+
+* Protocol: HTTP –80 
+* VPC: Dev-VPC 
+* Register Targets: Webserver AZ1 and Webserver AZ2 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.3D.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 Select Include as pending below, then select Create Target Group.
 
 To create a Load Balancer, go to the EC2 Dashboard and on the left side look for Load Balancer tab and select it. Select Create load balancer. I used the following configuration: 
-<p align="center">
-Application load balancer: Create 
-<p align="center">
+
+* Application load balancer: Create 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Load balancer name: Dev-ALB 
-<p align="center">
-Scheme: Internet facing 
-<p align="center">
-Network mapping: 
-<p align="center">
-VPC: Dev VPC 
-<p align="center">
-Availability zone: US-East-1A subnet (Public Subnet AZ1) 
-<p align="center">
-Availability zone: US-East-1B subnet (Public Subnet AZ2)
-<p align="center">
-Security group:  ALB SG 
-<p align="center">
-Listener and routing: 
-<p align="center">
-Protocol: HTTP – 80  forward to: Dev-TG  (Target group)
-<p align="center"> 
+
+* Load balancer name: Dev-ALB 
+* Scheme: Internet facing 
+* Network mapping: 
+* VPC: Dev VPC 
+* Availability zone: US-East-1A subnet (Public Subnet AZ1) 
+* Availability zone: US-East-1B subnet (Public Subnet AZ2)
+* Security group:  ALB SG 
+* Listener and routing: 
+* Protocol: HTTP – 80  forward to: Dev-TG  (Target group)
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.4C.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Finally, click Create load balancer. 
-<p align="center">
+
+* Finally, click Create load balancer. 
+
 After creating the load balancer, I need to test. Using the load balancer DNS name, I open a new tab and copy and paste it. I’m able to access the Webservers.
-<p align="center">  
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb000.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
-<p align="center"> 
+
 Next, I need to login as admin to update the URL address on the WordPress server. 
-<p align="center"> 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb001.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 
-<p align="center">
-In this section of the project, I’m going to register a record set on Route 53. 
-<p align="center">
+
+In this section of the project, I’m going to register a record set on Route 53.
+
 On the AWS console look for Route 53, then on the Route 53 Dashboard select: DNS management 1 hosted zone. Select the hosted zone (Richarlison01.click), the hosted zone details page will be displayed, and I click on Create record. <br/>
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.1B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center"> 
-Configuration used: 
-<p align="center">
-Record name: www 
-<p align="center">
-Record type: A – Routes traffic to an IPv4 address and some AWS resources. 
-<p align="center">
-Alias record selected. 
-<p align="center">
-Route traffic to: Alias to Application and Classic load balancer 
-<p align="center">
-Choose a region: US-East-North Virginia 
-<p align="center">
-Choose Load balancer: dualstack.Dev-ALB-334537928.us-east-1.elb.amazonaws.com 
-<p align="center">
-Finally, click on Create records.
-<p align="center">
-<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.1C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
+Configuration settings: 
+* Record name: www 
+* Record type: A – Routes traffic to an IPv4 address and some AWS resources. 
+* Alias record selected. 
+* Route traffic to: Alias to Application and Classic load balancer 
+* Choose a region: US-East-North Virginia 
+* Choose Load balancer: dualstack.Dev-ALB-334537928.us-east-1.elb.amazonaws.com 
+* Finally, click on Create records.
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.1C.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
 To test the record registration, I open a new browser tab and copy and paste the domain: www.Richarlison.click. The test is successful its sending me to WordPress. 
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 Now, I need to login to WordPress as admin using the following URL: www.Richarlison.click/wp-admin . Every time we update the domain name, it needs to be updated on WordPress to properly connect. 
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rt.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
@@ -443,17 +404,15 @@ Now, I need to login to WordPress as admin using the following URL: www.Richarli
 In this section, I will create an SSL certificate in AWS Certificate Manager. This is with the purpose of encrypting the traffic from our Webserver to the Web browser.
  
 On the AWS console look for Certificate Manager, then select request certificate. On the certificate type select – Request a public certificate and click next. 
-<p align="center">
-Following settings configure:
-<p align="center">
-Domain names – Fully qualify domain names: richarlison017.click.
-<p align="center">
-Validate method: DNS validation, scroll down and select Request.
-<p align="center">
+
+Configuration settings:
+* Domain names – Fully qualify domain names: richarlison017.click.
+* Validate method: DNS validation, scroll down and select Request.
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/cr.3.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
-<p align="center">
+ 
 Now, I need to validate with Route 53 our domain name, this is done by clicking on Create records in Route 53, select the domain name (richarlison017.click) and select Create records. 
-<p align="center">
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/cr.3D.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
 In this section of the project, I’m going to create a jump host/ jump box. The jump host is an EC2 instance that is going to be created in the public subnet and is going to be able to connect to the private subnets.
@@ -466,7 +425,6 @@ On the AWS console look for EC2, select launch instance. On the launch instance,
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 * Application OS: Amazon Linux 2 AMI.
-
 * Instance type: T2 Micro.
 * Key pair: Mosalah9.
 * Networking: Dev VPC.
