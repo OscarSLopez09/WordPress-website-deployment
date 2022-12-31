@@ -113,28 +113,38 @@ SG Name: Webserver SG, inbound rules (Http, 80) source (ALB SG) - inbound rules 
 SG Name: Database SG, inbound rules (MySQL/Aurora, 3306) source (Webserver SG). Also, I creted the EFS security group - SG Name: EFS SG, inbound rules (NFS, 2049) source (Webserver SG) - inbound rule (SSH, 22) source (SSH SG).
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/> 
  
-<p align="center">
+
 In this section of the project, I’m going to create the Database instance. The database is going to be a MySQL DB and is going to be hosted on the AZ North Virginia US –East –1B. Also, I’m going to create a Database subnet group. 
  
-<p align="center">
-To start we look for RDS, then on the left side we find subnet groups, then we click on create DB subnet group. I named it – Database subnet, for the Availability Zones – select US-East-1B and US-East-1A, subnets: Private Data subnet AZ1 and Private Data Subnet AZ2, and finally click on Create. 
 
-<p align="center">
+* To start we look for RDS, on the AWS management console, then on the left side we find subnet groups.
+* Click on create DB subnet group
+* Name: Database subnet, for the 
+* Availability Zones: select US-East-1B and US-East-1A
+* Subnets: Private Data subnet AZ1 and Private Data Subnet AZ2
+* Click on Create 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.1A.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.2A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center"> 
-<p align="center"> 
-I select Create Database; the following configuration is selected: 
-<p align="center">
+
+Create Database configuration settings:
  
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.3.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Standard create - Engine option: MySQL – Engine Version: 5.7.38 - Templates: Dev/Test - DB instance Identifier: dev-rds-db – Select the DB username and password – Connectivity on Virtual Private cloud (VPC): select Dev VPC
-<p align="center">
+
+* Standard create: Engine option: MySQL
+* Engine Version: 5.7.38
+* Templates: Dev/Test
+* DB instance Identifier: dev-rds-db
+* DB username and password
+* Connectivity on Virtual Private cloud (VPC): Dev VPC
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-selected Database Subnet Group – on security groups: Database SG – On additional configuration I have to select a DB name: applicationdb -  Select Create Database. 
-<p align="center">
+
+* Database Subnet Group – security groups: Database SG 
+* Additional configuration DB name: applicationdb
+* Select Create Database 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/rds.4E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
