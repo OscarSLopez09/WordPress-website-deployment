@@ -45,49 +45,109 @@ Internet Gateway creation:
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.7.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
 
-* Internet Gateway is then attached to VPC by clicking on the attach to VPC button 
-* Available VPCs - select Dev VPC and click on Attach Internet gateway
+* Internet Gateway is attached to VPC by clicking on attach to VPC button. 
+* Available VPCs - select Dev VPC and click on Attach Internet gateway.
 
-I create 2 subnents - Public Subnet AZ1 and Public Subnet AZ2. The public subnet are going to hold the Nat Gateways, set up Server, and jump Host in the later sections. 
+In this section, I'm going to create two public subnets - Public Subnet AZ1 and Public Subnet AZ2. The public subnet are going to hold the Nat Gateways, set up Server, and jump Host in the later sections. 
 
-Public Subnets creation: 
+**Public Subnets creation:** 
+
+* On the VPC Dashboard select Subnets and click create subnet
+* Create subnet VPC: Dev VPC 
+* Subnet name: Public Subnet AZ1 
+* Availability zone: US East N Virginia/ us-east-1a 
+* IPv4 CIDR: 10.0.0.0/24 
+* Click create Subnet 
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.11.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+* Create subnet VPC: Dev VPC
+* Subnet name: Public Subnet AZ2 
+* Availability zone: US East N Virginia/ us-east-1b 
+* IPv4 CIDR: 10.0.1.0/24 
+* Click create Subnet
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.12.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
-I create Route Table named: Public Route Table. With this RT I'm going to route traffic to the internet from the public subnets. The route tables are going to have a destination of 0.0.0.0/0 and target - Internet Gateway. Also, I associated the public subnets with the Public route table. <br/>
+I need to create a route table, With this RT I'm going to route traffic to the internet from the public subnets. The route tables are going to have a destination of 0.0.0.0/0 - target: Internet Gateway. Also, I associated the public subnets with the Public route table. 
+
+To create route table, on VPC Dashboard select route tables.
+ 
+Route table settings: 
+* Name: Public RT 
+* VPC: Dev VPC 
+* Click Create route table 
+* Click on routes – click Edit routes and click on Add routes 
+* Destination: 0.0.0.0/0 
+* Target: Internet Gateway (Dev IG) 
+* Click Save changes 
+
+We need to associate the public subnets with the Route table. 
+* Select Subnets association and click on Edit subnet association. 
+* Available Subnets: Public Subnet AZ1 and Public Subnet AZ2, select the two subnets. 
+* Click Save association. 
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.15.PNG?raw=true" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
-I create the private subnets for this project: Priave App Subnet AZ1, Private Subnet AZ1, Private Data Subnet AZ1, and Private Data Subnet AZ2. The Private App Subnet are going to hold the Webserver and the Private Data Subnets are going to hold the Database instance. All AZ1 subnets are created on the US-East-1A and all the AZ2 subnets are created on the UsS -East-1B AZ.
+I create the private subnets for this project: Priave App Subnet AZ1, Private Subnet AZ1, Private Data Subnet AZ1, and Private Data Subnet AZ2. The Private App Subnet are going to hold the Webserver and the Private Data Subnets are going to hold the Database instance. All AZ1 subnets are created on the US-East-1A and all the AZ2 subnets are created on the Us-East-1B AZ.
+
+* Create subnet VPC: Dev VPC 
+* Subnet name: Private App Subnet AZ1 
+* Availability zone: US East N Virginia/ us-east-1a 
+* IPv4 CIDR: 10.0.2.0/24 
+* Click create Subnet 
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.18A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+* Create subnet VPC: Dev VPC 
+* Subnet name: Private App Subnet AZ2 
+* Availability zone: US East N Virginia/ us-east-1b 
+* IPv4 CIDR: 10.0.3.0/24 
+* Click create Subnet 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.19.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+* Create subnet VPC: Dev VPC 
+* Subnet name: Private Data Subnet AZ1 
+* Availability zone: US East N Virginia/ us-east-1a 
+* IPv4 CIDR: 10.0.4.0/24 
+* Click create Subnet 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.20.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+
+* Create subnet VPC: Dev VPC 
+* Subnet name: Private Data Subnet AZ2 
+* Availability zone: US East N Virginia/ us-east-1b 
+* IPv4 CIDR: 10.0.5.0/24 
+* Click create Subnet 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.21.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
+
 A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside the VPC. In the following section I’m going to create two Nat Gateways to connect the private subnets to the internet. One on each public Subnet, (Public AZ1, Public AZ2).
 
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
-<p align="center"> 
+
 The Nat gateway is being created on the Public Subnet AZ1 and an elastic IP is being allocated.
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.1A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
- Private Route table (Private RT AZ1) is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ1. On subnete association I associate the Private App Subnet AZ1 and Private Data AZ1. This is going to connect the private subnets with publice subnets using the Nat Gateway: <br/>
+
+ Private Route table (Private RT AZ1) is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ1. On subnete association I associate the Private App Subnet AZ1 and Private Data AZ1. This is going to connect the private subnets with publice subnets using the Nat Gateway:
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.2A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-<p align="center">
-Now, I create a second Nat Gateway for the AZ2 subnets: <br/>
+
+Now, I create a second Nat Gateway for the AZ2 subnets:
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-The sencond route table is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ2 associated with the Private subnets: Private App Subnet AZ2 and Private Private Data Subnet AZ2. <br/>
-<p align="center">
+The sencond route table is created with the destination: 0.0.0.0/0 target - Nat Gateway AZ2 associated with the Private subnets: Private App Subnet AZ2 and Private Private Data Subnet AZ2. 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/ng.4B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 In this part of the project, I’m going to create the security groups needed. I will create:
