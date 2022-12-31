@@ -140,13 +140,26 @@ selected Database Subnet Group – on security groups: Database SG – On additi
 
 In this section of the project, I will create an EFS file system, so that Webserver can have access to shared files, application code, and application file configurations. The EFS Mount targets are in each AZ in the VPC. The Webservers will use the mount targets to connect to the EFS. 
  
-On the AWS console look for EFS, select create file system, customize option. The file system settings will appear and in general, create the name: Dev-EFS - Storage Class: Standard – On Enable encryption of data at rest: disabled – Click on the next button. 
+On the AWS console look for EFS, select create file system, customize option. The file system settings will appear.
+ 
+Configuration settings:
+ 
+* Name: Dev-EFS
+* Storage Class: Standard
+* Enable encryption of data at rest: disabled
+* Click on the next button. 
 
-<p align="center">
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efs.1.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
 
-On network settings: Dev VPC – Mount targets: select the AZ US-East-1A – Subnet: Private Data Subnet AZ1 – security groups: EFS SG. I created a second Mount target: AZ US-East-1B – Subnet: Private Data Subnet AZ2 – Security groups: EFS SG. Then select Next and click on Create. 
-<p align="center">
+* Network settings: Dev VPC
+* Mount targets: select the AZ US-East-1A
+* Subnet: Private Data Subnet AZ1
+* security groups: EFS SG
+* Second Mount target created: AZ US-East-1B 
+* Subnet: Private Data Subnet AZ2
+* Security groups: EFS SG. 
+* Select next and click on Create. 
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/efs.1A.PNG" height="20%" width="50%" alt="Disk Sanitization Steps"/>
 
 
