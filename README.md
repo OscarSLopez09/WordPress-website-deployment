@@ -458,43 +458,41 @@ Now, I need to validate with Route 53 our domain name, this is done by clicking 
 
 In this section of the project, I’m going to create a jump host/ jump box. The jump host is an EC2 instance that is going to be created in the public subnet and is going to be able to connect to the private subnets.
  
-<p align="center">
+
 On the AWS console look for EC2, select launch instance. On the launch instance, I choose the following settings:
-<p align="center">
-Name: Bastion host
-<p align="center">
+ 
+* Name: Bastion host.
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-Application OS: Amazon Linux 2 AMI
-<p align="center">
-Instance type: T2 Micro
-<p align="center">
-Key pair: Mosalah9
-<p align="center">
-Networking: Dev VPC
-<p align="center">
-Subnet: Public Subnet AZ1
-<p align="center">
-Security groups: SSH SG, then click on launch instance. 
-<p align="center">
+
+* Application OS: Amazon Linux 2 AMI.
+
+* Instance type: T2 Micro.
+* Key pair: Mosalah9.
+* Networking: Dev VPC.
+* Subnet: Public Subnet AZ1.
+* Security groups: SSH SG, then click on launch instance. 
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/bj.2B.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 A listener is a process that checks for connection requests. You define a listener when you create your load balancer, and you can add listeners to your load balancer at any time. In this section, I will create an HTTP Listener for the Application Load Balancer and secure the Website. 
 
 On the AWS console look for EC2, then on the left side of the Dashboard look for Load balancer. Click on the load balancer (Dev-ALB), look for the listener section and select add listener.
-<p align="center">
+ 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
-On the listener details change the protocols: HTTPS - 443, then on default actions, select: Forward to – Dev-TG. Now, scroll down to Default SSL/TLS certificate – From ACM select (richarlison017.click) certificate. At this point click Add button.
-<p align="center">
+
+* On the listener details change the protocols: HTTPS - 443.
+* Default actions, select: Forward to – Dev-TG.
+* Scroll down to Default SSL/TLS certificate – From ACM select (richarlison017.click) certificate. At this point click Add button.
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.4.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 Now, scroll down to Default SSL/TLS certificate – From ACM select (richarlison017.click) certificate. At this point click Add button.
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<p align="center">
+
 Click on listener and select – HTTP:80. Now on the action menu select – Edit listener, go down to default actions – select redirect change the port: HTTPS: 443, then click on Save changes. 
-<p align="center">
+
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/hl.7.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
 A launch template specifies instance configuration information - It includes the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and other parameters used to launch EC2 instances. In this section I will create a launch template and an Auto Scaling group. This will provide availability to the Website. 
