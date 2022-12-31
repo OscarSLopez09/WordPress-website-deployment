@@ -502,27 +502,52 @@ A launch template specifies instance configuration information - It includes the
 **To create a Lunch Template:**
 
 * On the AWS console look for EC2, then on the left side of the Dashboard look for Launch Templates, then select Create launch templates. 
-* Launch template name: Dev-Launch-Template
-* Auto scaling guidance – select Provide guidance to help me set up a template that I can use with EC2 auto
-* Application and OS: Amazon Linux 2 AMI
-* Instance type: T2 Micro
-* Key pair: Mosalah9
-* Firewall (Security and groups) select existing security group: Webserver SG
-* Scroll down to Advanced details (User Data) Then click on the Create launch template. 
+* Launch template name: Dev-Launch-Template.
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.2.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+* Auto scaling guidance – select Provide guidance to help me set up a template that I can use with EC2 auto.
+* Application and OS: Amazon Linux 2 AMI.
+* Instance type: T2 Micro.
+* Key pair: Mosalah9.
+* Firewall (Security and groups) select existing security group: Webserver SG.
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.5.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+* Scroll down to Advanced details (User Data), Then input the commands to create the Webserver and click on the Create launch template. 
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.7.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
 
 **To create an Auto Scaling Group:**
  
-* On the left side of the EC2 Dashboard look for Auto scaling groups. Select Create Auto scaling group
-* Auto scaling group name: Dev-ASG
-* Select launch template: Dev-Launch-Template and click Next
-* Network section VPC: Dev VPC
-* Availability zones and subnets: Private App Subnet AZ1 and Private App Subnet AZ2 and click Next
-* Load balancing – select Attached to an existing Load balancer
-* Existing Load balancer target groups: Dev-TG
-* Health Check type – Select ALB, then click Next
-* On Desired Capacity: 2 Minimum Capacity: 1 Maximum Capacity: 4 then select Next
+* On the left side of the EC2 Dashboard look for Auto scaling groups. Select Create Auto scaling group.
+* Auto scaling group name: Dev-ASG.
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.9A.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+* Select launch template: Dev-Launch-Template and click Next.
+* Network section VPC: Dev VPC.
+* Availability zones and subnets: Private App Subnet AZ1 and Private App Subnet AZ2 and click Next.
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.9C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
+* Load balancing – select Attached to an existing Load balancer.
+* Existing Load balancer target groups: Dev-TG.
+* Health Check type – Select ALB, then click Next.
+* On Desired Capacity: 2 Minimum Capacity: 1 Maximum Capacity: 4 then select Next.
+
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.9G.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+ 
 * Select tags: ASG-Webserver and click Create Auto scaling group. 
+ 
+Now I’m going back to the EC2 Instances and verify that the Auto Scaling is working.
+ 
+The ASG is working the servers with the ASG-Webserver are initializing.
+ 
+<img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/sg.10.PNG" height="60%" width="60%" alt="Disk Sanitization Steps"/>
+
+
 
 
 
