@@ -590,48 +590,5 @@ As you can see, the test is successfull I'm able to contact the Webserver.
 
 
 
-### Create API
-
-**To create the API**
-1. Go to API Gateway console
-2. Click Create API
-
-![create API](./images/create-api-button.jpg) 
-
-3. Scroll down and select "Build" for REST API
-
-![Build REST API](./images/build-rest-api.jpg) 
-
-4. Give the API name as "DynamoDBOperations", keep everything as is, click "Create API"
-
-![Create REST API](./images/create-new-api.jpg)
-
-5. Each API is collection of resources and methods that are integrated with backend HTTP endpoints, Lambda functions, or other AWS services. Typically, API resources are organized in a resource tree according to the application logic. At this time you only have the root resource, but let's add a resource next 
-
-Click "Actions", then click "Create Resource"
-
-![Create API resource](./images/create-api-resource.jpg)
-
-6. Input "DynamoDBManager" in the Resource Name, Resource Path will get populated. Click "Create Resource"
-
-![Create resource](./images/create-resource-name.jpg)
-
-7. Let's create a POST Method for our API. With the "/dynamodbmanager" resource selected, Click "Actions" again and click "Create Method". 
 
 
-
-
-<br />
-<br />
-
-</p>
-
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
