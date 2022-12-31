@@ -264,7 +264,7 @@ On the AWS console look for EC2, select launch instance. On the launch instance,
  
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
-* Advanced Details: scroll down to (User data) and input the commands to create Webserver.
+* Advanced Details: scroll down to (User data) and input the commands to create Webserver:
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.1E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
@@ -284,7 +284,7 @@ On the AWS console look for EC2, select launch instance. On the launch instance,
  
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2C.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
-*Advanced Details: Scroll down to user data:
+* Advanced Details: Scroll down to user data and input the command to create Webserver:
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/alb.2E.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
  
