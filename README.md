@@ -3,7 +3,7 @@
  
 
 
-In this project I would deploy a WordPress website on AWS using a Three-Tier infrastructure. The AWS services used in this project are the following: 
+In this project, I would deploy a WordPress website on AWS using a Three-Tier infrastructure. The AWS services used in this project are the following: 
 
 - Build AWS VPC from scratch. 
 - Create Nat Gateways. 
