@@ -26,7 +26,7 @@ I will start the project by creating a custom VPC. The architecture is divided i
 
 <img src="https://github.com/OscarSLopez09/WordPress-website-deployment/blob/master/vpc.0.PNG" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 
-On the AWS consol look for VPC, then I select the N Virginia US region.
+On the AWS console look for VPC, then I select the N Virginia US region.
 * VPC Dashboard select: create VPC 
 * Resources to create: VPC only 
 * Name  tag: Dev VPC 
